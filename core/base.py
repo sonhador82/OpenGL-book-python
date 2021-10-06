@@ -23,6 +23,9 @@ class Base:
         self.clock = pygame.time.Clock()
         self.input = Input()
 
+        # number of seconds app has been running
+        self.time = 0
+
     def initialize(self):
         pass
 
@@ -36,6 +39,11 @@ class Base:
             self.input.update()
             if self.input.quit:
                 self.running = False
+
+            # seconds since interation of run loop
+            self.deltaTime = self.clock.get_time() / 1000
+            # increment time app has been running
+            self.time += self.deltaTime
 
             self.update()
             pygame.display.flip()
